@@ -1,0 +1,11 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const Aprendizaje_controller_1 = require("../controllers/Aprendizaje.controller");
+const aprendizajeRouter = (0, express_1.Router)();
+aprendizajeRouter.get("/", Aprendizaje_controller_1.getAllaprendizaje);
+aprendizajeRouter.get("/:id", Aprendizaje_controller_1.getIdaprendizajeById);
+aprendizajeRouter.post("/", Aprendizaje_controller_1.createaprendizaje);
+aprendizajeRouter.put("/:id", Aprendizaje_controller_1.updateaprendizaje);
+aprendizajeRouter.delete("/:id", Aprendizaje_controller_1.deleteaprendizaje);
+exports.default = aprendizajeRouter;
