@@ -1,17 +1,28 @@
-export class Instructor {}
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
-import { Aprendizaje } from './aprendizaje.entity';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import { Aprendizaje } from 'src/aprendizaje/entities/aprendizaje.entity';
 
-@Entity()
+@Entity({name: 'instructor'})
 export class Instructor {
+
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column()
+    @Column('text')
     nombre: string;
 
-    @OneToMany(() => Aprendizaje, aprendizaje => aprendizaje.instructor)
-    aprendizajes: Aprendizaje[];
+    @Column('text')
+    Nacimiento: string;
 
-    // Otras propiedades y relaciones
+    @Column('text')
+    experiencia: string;
+
+    @OneToMany(
+        () => Aprendizaje,
+        ( aprendizaje ) => aprendizaje.instructor,
+        { cascade: true }
+    )
+    aprendizajes?: Aprendizaje[]
+
+    @Column('text', { default: 'Activo' })
+    estado: string;
 }

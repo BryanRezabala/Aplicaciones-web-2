@@ -19,16 +19,16 @@ export class AprendizajeController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.aprendizajeService.findOne(+id);
+    return this.aprendizajeService.findOne(id);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateAprendizajeDto: UpdateAprendizajeDto) {
-    return this.aprendizajeService.update(+id, updateAprendizajeDto);
+    return this.aprendizajeService.update(id, updateAprendizajeDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.aprendizajeService.remove(+id);
+    return this.aprendizajeService.remove(id);
   }
 }

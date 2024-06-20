@@ -1,15 +1,22 @@
-export class Idioma {}
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import { Aprendizaje } from 'src/aprendizaje/entities/aprendizaje.entity';
 
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
-
-@Entity()
+@Entity({name: 'idioma'})
 export class Idioma {
+
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column()
-    nombre: string;
+    @Column('text', { nullable: true })
+    descripcionDelIdioma: string;
 
-    @Column()
-    estado: string; 
+    @OneToMany(
+        () => Aprendizaje,
+        ( aprendizaje ) => aprendizaje.idioma,
+        { cascade: true }
+    )
+    aprendizajes?: Aprendizaje[]
+    
+    @Column('text', { default: 'Activo' })
+    estado: string;
 }

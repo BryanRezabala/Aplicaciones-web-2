@@ -1,22 +1,46 @@
-export class Aprendizaje {}
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
+import { Idioma } from 'src/idioma/entities/idioma.entity';
+import { Instructor } from 'src/instructor/entities/instructor.entity';
 
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
-import { Idioma } from './idioma.entity';
-import { Instructor } from './instructor.entity';
+@Entity({name: 'aprendizaje'})
+export class Aprendizaje {
 
-@Entity()
-export class aprendizaje {
-    @PrimaryGeneratedColumn()
-    id: number;
+    @PrimaryGeneratedColumn('uuid')
+    @Column({ primary: true, unique: true })
+    id: string;
 
-    @Column()
-    nombre: string;
+    @Column('integer')
+    idIdioma: number;
 
-    @ManyToOne(() => Idioma, idioma => idioma.aprendizajes)
-    idioma: Idioma;
+    @Column('integer')
+    idInstructor: number;
 
-    @ManyToOne(() => Instructor, instructor => instructor.aprendizajes)
-    instructor: Instructor;
+    @Column('text')
+    fecha: string;
 
-    // Puedes agregar más propiedades y relaciones según sea necesario
+    @Column('text')
+    hora: string;
+
+    @Column('integer')
+    numeroDeHorasDelCurso: number;
+
+    @Column('text')
+    nivel: string;
+
+    @ManyToOne(
+        () => Idioma,
+        ( idioma ) => idioma.aprendizajes,
+        { eager: true }
+    )
+    idioma?: Idioma;
+
+    @ManyToOne(
+        () => Instructor,
+        ( instructor ) => instructor.aprendizajes,
+        { eager: true }
+    )
+    instructor?: Instructor;
+    
+    @Column('text', { default: 'Activo' })
+    estado: string;
 }
