@@ -1,0 +1,85 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Instructor {
+  id: ID!
+  nombre: String!
+  fecha_de_nacimiento: String!
+  experiencia: Int!
+  aprendizajes: [Aprendizaje!]
+  estado: String!
+}
+
+type Aprendizaje {
+  id: ID!
+  idioma: Idioma!
+  instructor: Instructor!
+  fecha: String!
+  hora: String!
+  numero_horas: Int!
+  nivel: String!
+  estado: String!
+}
+
+type Idioma {
+  id: ID!
+  descripcion: String!
+  aprendizajes: [Aprendizaje!]
+  estado: String!
+}
+
+type Query {
+  idiomas(estado: String): [Idioma!]!
+  idioma(id: Float!): Idioma!
+  instructores(estado: String): [Instructor!]!
+  instructor(id: Float!): Instructor!
+  aprendizajes(estado: String): [Aprendizaje!]!
+  aprendizaje(id: Float!): Aprendizaje!
+}
+
+type Mutation {
+  createIdioma(createIdiomaInput: CreateIdiomaInput!): Idioma!
+  updateIdioma(updateIdiomaInput: UpdateIdiomaInput!): Idioma!
+  removeIdioma(id: Float!): Idioma!
+  createInstructor(createInstructorInput: CreateInstructorInput!): Instructor!
+  updateInstructor(updateInstructorInput: UpdateInstructorInput!): Instructor!
+  removeInstructor(id: Float!): Instructor!
+  createAprendizaje(createAprendizajeInput: CreateAprendizajeInput!): Aprendizaje!
+  updateAprendizaje(updateAprendizajeInput: UpdateAprendizajeInput!): Aprendizaje!
+  removeAprendizaje(id: Float!): Aprendizaje!
+}
+
+input CreateIdiomaInput {
+  descripcion: String!
+  estado: String! = "Activo"
+}
+
+input UpdateIdiomaInput {
+  id: ID!
+}
+
+input CreateInstructorInput {
+  nombre: String!
+  fecha_de_nacimiento: String!
+  experiencia: Int!
+  estado: String! = "Activo"
+}
+
+input UpdateInstructorInput {
+  id: ID!
+}
+
+input CreateAprendizajeInput {
+  idiomaid: Int!
+  instructorid: Int!
+  fecha: String!
+  hora: String!
+  numero_horas: Int!
+  nivel: String!
+  estado: String! = "Activo"
+}
+
+input UpdateAprendizajeInput {
+  id: ID!
+}
