@@ -1,0 +1,8 @@
+{
+    "database": {
+      "storage": "./prod_database.sqlite",
+      "dialect": "sqlite"
+    },
+    "useDummyData": false
+  }
+  
